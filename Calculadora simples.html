@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora avançada</title>
+</head>
+<body>
+    <h1>Calculadora avançada</h1>
+    <input type="number" name="txt1" id="txt1"> 
+    <input type="number" name="txt2" id="txt2">
+    
+    <input type="button" value="somar" onclick="somar()">
+    <input type="button" value="subtrair" onclick="subtrair()">
+    <input type="button" value="multiplicar" onclick="multiplicar()">
+    <input type="button" value="Dividir" onclick="Dividir()">
+    <input type="button" value="potencia" onclick="potencia()">
+    <input type="button" value="Raiz" onclick="raiz()">
+
+    <div id="res"></div>
+
+    <script>
+        function somar() {
+            var tn1 = document.getElementById('txt1').value
+            var tn2 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s = Number(tn1) + Number(tn2)
+
+            res.innerHTML = `A soma entre os números é <strong>${s}<strong>`
+        }
+        function subtrair() {
+            var tn3 = document.getElementById('txt1').value
+            var tn4 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s2 = Number(tn3) - Number(tn4)
+
+            res.innerHTML = `A subtração entre os numeros é <strong>${s2}<strong>`
+        }
+        function multiplicar() {
+            var tn5 = document.getElementById('txt1').value
+            var tn6 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s3 = Number(tn5) * Number(tn6)
+
+            res.innerHTML = `A multiplicação entre os números é <strong>${s3}<strong>`
+        }
+        function Dividir() {
+            var tn7 = document.getElementById('txt1').value
+            var tn8 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s4 = Number(tn7) / Number(tn8)
+
+            res.innerHTML = `A divisão entre os números é <strong>${s4}<strong>`
+        }
+        function potencia() {
+            var tn9 = document.getElementById('txt1').value
+            var tn10 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s5 = Number(tn9) ** Number(tn10)
+
+            res.innerHTML = `A potencia do primeiro número elevado ao segundo é <strong>${s5}<strong>`
+        }
+        function raiz() {
+            var tn11 = document.getElementById('txt1').value
+            var tn12 = document.getElementById('txt2').value
+            var res = document.getElementById('res')
+
+            var s6 = Number(tn11) ** (1 / tn12)
+
+            res.innerHTML = `a raiz do primeiro número é <strong>${s6}<strong>`
+        }
+    </script>
+</body>
+</html>

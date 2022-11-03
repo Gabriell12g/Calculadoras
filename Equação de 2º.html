@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equação de 2º</title>
+</head>
+<body>
+   A <input type="number" name="txt1" id="txt1"> B
+    <input type="number" name="txt2" id="txt2"> C
+    <input type="number" name="txt3" id="txt3">
+
+    <input type="button" value="resolver" onclick="resolver()">
+
+    <div id="res"></div>
+    <div id="res2"></div>
+    <script>
+        function resolver() {
+            var tn1 = document.getElementById('txt1').value
+            var tn2 = document.getElementById('txt2').value
+            var tn3 = document.getElementById('txt3').value
+            var res = document.getElementById('res')
+            var res2 = document.getElementById('res2')
+            var Delta = [ Number(tn2) ** (2) - 4 * Number(tn1) * Number(tn3)]
+
+            if(Delta < 0) {
+                res.innerHTML = `${Delta} Delta é menor que zero`
+            }else if (Delta == 0) {
+                res.innerHTML = (`${Delta} Delta é igual a zero, portanto X1 e X2 vao ser iguais`)
+            }else {
+
+            res2.innerHTML = `${Delta}`
+
+            var Bhaskara1 = ((-Number(tn2)) + Number(Delta) ** (1/2)) / (2 * Number(tn1))
+            var Bhaskara2 = ((-Number(tn2)) - Number(Delta) ** (1/2)) / (2 * Number(tn1))
+            res.innerHTML = `${Bhaskara1} e ${Bhaskara2}`
+            } 
+        }
+    </script>
+</body>
+</html>
