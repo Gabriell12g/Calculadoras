@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <title>Calculadora Estatística</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      input {
+        font-size: 1em;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 300px;
+      }
+      input[type='submit'] {
+        width: 150px;
+        background: #eee;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Calculadora Estatística</h3>
+    <form action="">
+      <label>Insira os dados separados por vírgula:</label>
+      <input type="text" name="dados" id="dados">
+      <input type="submit" value="Calcular" id="calcular">
+    </form>
+    <div id="resultado"></div>
+    <script>
+      let form = document.querySelector('form');
+      let calcularBtn = document.getElementById('calcular');
+      let dadosInput = document.getElementById('dados');
+      let resultadoDiv = document.getElementById('resultado');
+      let dados = [];
+
+      calcularBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dados = dadosInput.value.split(',').map(Number);
+        let media = calcularMedia(dados);
+        let mediana = calcularMediana(dados);
+        let moda = calcularModa(dados);
+        let variancia = calcularVariancia(dados);
+        let desvioPadrao = calcularDesvioPadrao(dados);
+        let resultadoHTML = `<ul>
+          <li><strong>Média:</strong> ${media}</li>
+          <li><strong>Mediana:</strong> ${mediana}</li>
+          <li><strong>Moda:</strong> ${moda}</li>
+          <li><strong>Variância:</strong> ${variancia}</li>
+          <li><strong>Desvio Padrão:</strong> ${desvioPadrao}</li>
+        </ul>`;
+        resultadoDiv.innerHTML = resultadoHTML;
+      });
+
+      function calcularMedia(dados) {
+        let soma = 0;
+        for (let dado of dados) {
+          soma += dado;
+        }
+        return soma / dados.length;
+      }
+
+      function calcularMediana(dados) {
+        let meio = parseInt(dados.length / 2);
+        dados.sort(ordenarNumeros);
+        if (dados.length % 2 == 0) {
+          return (dados[meio] + dados[meio - 1]) / 2;
+        }
+        return dados[meio];
+      }
+
+      function calcularModa(dados) {
+        let contagem = {};
+        for (let dado of dados) {
+          if (contagem[dado]) {
+            contagem[dado]++;
+          } else {
+            contagem[dado] = 1;
+          }
+        }
+        let maiorContagem = 0;
+        let moda;
+        for (let dado in contagem) {
+          if (contagem[dado] > maiorContagem) {
+            maiorContagem = contagem[dado];
+            moda = dado;
+          }
+        }
+        return moda;
+      }
+
+      function calcularVariancia(dados) {
+        let media = calcularMedia(dados);
+        let somatorio = 0;
+        for (let dado of dados) {
+          somatorio += (dado - media) ** 2;
+        }
+        return somatorio / (dados.length - 1);
+      }
+
+      function calcularDesvioPadrao(dados) {
+        let variancia = calcularVariancia(dados);
+        return Math.sqrt(variancia);
+      }
+
+      function ordenarNumeros(a, b) {
+        return a - b;
+      }
+    </script>
+  </body>
+</html>
